@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project name="liquibase-demo" default="updateDatabase" basedir=".">
+
+	<property file="liquibase.properties" />
+	
+	<property name="changelog.master" value="tdc/2013/portoalegre/db/changelog/db.changelog-master.xml" />
+	<property name="rollback.tag" value="1" />
+
+	<property name="lib.dir" value="lib" />
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.*" />
+		</fileset>
+	</path>
+
+	<taskdef resource="liquibasetasks.properties">
+		<classpath refid="classpath" />
+	</taskdef>
+
+	<target name="updateDatabase">
+		<updateDatabase changeLogFile="${changelog.master}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
+
+	<target name="rollbackDatabase">
+		<rollbackDatabase changeLogFile="${changelog.master}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath"
+			rollbackTag="rollback.tag"/>
+	</target>
+
+	<target name="rollbackFutureDatabase">
+		<rollbackFutureDatabase changeLogFile="${changelog.master}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
+	
+	<target name="tagDatabase">
+		<tagDatabase changeLogFile="${changelog.master}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
+		
+	<target name="generateChangeLog">
+		<generateChangeLog outputFile="tdc/2013/portoalegre/db/changelog/sql/generateChangeLog.sql"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
+
+	<target name="changeLogSync">
+		<changeLogSync changeLogFile="${changelog.master}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
+</project>

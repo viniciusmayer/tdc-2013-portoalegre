@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="viniciusmayer">
+		<createTable tableName="pessoa">
+			<column name="id" type="serial" autoIncrement="true"
+				incrementBy="1" startWith="1">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="nome" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="cpf" type="varchar(11)">
+				<constraints unique="true" nullable="false" />
+			</column>
+		</createTable>
+
+		<rollback>
+			<dropTable tableName="pessoa" />
+		</rollback>
+	</changeSet>
+
+	<changeSet id="2" author="viniciusmayer">
+		<createTable tableName="mensagem">
+			<column name="id" type="serial" autoIncrement="true"
+				incrementBy="1" startWith="1">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="texto" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="pessoa_id" type="integer" />
+		</createTable>
+
+		<rollback>
+			<dropTable tableName="mensagem" />
+		</rollback>
+	</changeSet>
+
+	<changeSet id="3" author="viniciuismayer">
+		<addForeignKeyConstraint baseColumnNames="pessoa_id"
+			baseTableName="mensagem" constraintName="fk_mensagem_pessoa"
+			referencedColumnNames="id" referencedTableName="pessoa" />
+
+		<rollback>
+			<dropForeignKeyConstraint baseTableName="mensagem"
+				constraintName="fk_mensagem_pessoa" />
+		</rollback>
+	</changeSet>
+</databaseChangeLog>
