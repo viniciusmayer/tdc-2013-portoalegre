@@ -3,8 +3,8 @@
 
 	<property file="liquibase.properties" />
 	
-	<property name="changelog.master" value="tdc/2013/portoalegre/db/changelog/db.changelog-master.xml" />
-	<property name="rollback.tag" value="1" />
+	<property name="changelog.master" value="db/changelog/db.changelog-master.xml" />
+	<property name="rollback.tag" value="0" />
 
 	<property name="lib.dir" value="lib" />
 	<path id="classpath">
@@ -33,7 +33,7 @@
 			username="${username}"
 			password="${password}"
 			classpathref="classpath"
-			rollbackTag="rollback.tag"/>
+			rollbackTag="${rollback.tag}"/>
 	</target>
 
 	<target name="rollbackFutureDatabase">

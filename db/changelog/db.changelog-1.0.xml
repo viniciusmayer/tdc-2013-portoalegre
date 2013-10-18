@@ -21,7 +21,7 @@
 		</createTable>
 
 		<rollback>
-			<dropTable tableName="pessoa" />
+			<dropTable tableName="pessoa" cascadeConstraints="true" />
 		</rollback>
 	</changeSet>
 
@@ -38,7 +38,7 @@
 		</createTable>
 
 		<rollback>
-			<dropTable tableName="mensagem" />
+			<dropTable tableName="mensagem" cascadeConstraints="true" />
 		</rollback>
 	</changeSet>
 
