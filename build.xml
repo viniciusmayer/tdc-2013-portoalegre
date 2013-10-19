@@ -20,7 +20,8 @@
 	</taskdef>
 
 	<target name="updateDatabase">
-		<updateDatabase changeLogFile="${changelog.master}"
+		<updateDatabase
+			changeLogFile="${changelog.master}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -29,13 +30,13 @@
 	</target>
 
 	<target name="rollbackDatabase">
-		<rollbackDatabase changeLogFile="${changelog.master}"
+		<rollbackDatabase rollbackTag="${rollback.tag}"
+			changeLogFile="${changelog.master}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
 			password="${password}"
-			classpathref="classpath"
-			rollbackTag="${rollback.tag}"/>
+			classpathref="classpath"/>
 	</target>
 
 	<target name="rollbackFutureDatabase">
@@ -66,24 +67,42 @@
 			classpathref="classpath" />
 	</target>
 	
+	<!--FIXME-->
 	<target name="diffDatabase">
-		<diffDatabase outputFile="${path}/diffDatabase.txt"
+		<diffDatabase outputFile="${path}/diffDatabase.sql"
+			referenceUrl="#{reference.url}"
+			referenceUsername="${username}"
+			referencePassword="${password}"
+		
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
 			password="${password}"
-		
-			referenceDriver="${driver}"
-			referenceUrl="#{referenceUrl}"
-			referenceUsername="${username}"
-			referencePassword="${password}"
-		
 			classpathref="classpath"/>
 	</target>
 	
-	<!--
-	diffDatabaseToChangeLog
-	dbDoc-->
+	<target name="diffDatabaseToChangeLog">
+		<diffDatabaseToChangeLog outputFile="${path}/diffDatabaseToChangeLog.xml"
+			referenceUrl="${reference.url}"
+			referenceUsername="${username}"
+			referencePassword="${password}"
+			
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath"/>
+	</target>
+
+	<target name="dbDoc">
+		<dbDoc outputDirectory="dbDoc"
+			changeLogFile="${changelog.master}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath"/>
+	</target>
 	
 	<target name="changeLogSync">
 		<changeLogSync changeLogFile="${changelog.master}"
@@ -94,6 +113,13 @@
 			classpathref="classpath" />
 	</target>
 	
-	<!--dropAllDatabaseObjects-->
+	<target name="dropAllDatabaseObjects">
+		<dropAllDatabaseObjects	promptOnNonLocalDatabase="true"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
 	
 </project>

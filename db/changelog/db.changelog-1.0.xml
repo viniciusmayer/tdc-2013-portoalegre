@@ -42,7 +42,7 @@
 		</rollback>
 	</changeSet>
 
-	<changeSet id="3" author="viniciuismayer">
+	<changeSet id="3" author="viniciusmayer">
 		<addForeignKeyConstraint baseColumnNames="pessoa_id"
 			baseTableName="mensagem" constraintName="fk_mensagem_pessoa"
 			referencedColumnNames="id" referencedTableName="pessoa" />
