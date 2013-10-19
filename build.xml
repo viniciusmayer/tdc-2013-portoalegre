@@ -2,9 +2,11 @@
 <project name="liquibase-demo" default="updateDatabase" basedir=".">
 
 	<property file="liquibase.properties" />
+	<property name="path" value="db/changelog/"/>
 	
-	<property name="changelog.master" value="db/changelog/db.changelog-master.xml" />
-	<property name="rollback.tag" value="0" />
+	<property name="changelog.master" value="${path}/db.changelog-master.xml" />
+	<property name="rollback.tag" value="1" />
+	<property name="tag" value="3" />
 
 	<property name="lib.dir" value="lib" />
 	<path id="classpath">
@@ -37,25 +39,8 @@
 	</target>
 
 	<target name="rollbackFutureDatabase">
-		<rollbackFutureDatabase changeLogFile="${changelog.master}"
-			driver="${driver}"
-			url="${url}"
-			username="${username}"
-			password="${password}"
-			classpathref="classpath" />
-	</target>
-	
-	<target name="tagDatabase">
-		<tagDatabase changeLogFile="${changelog.master}"
-			driver="${driver}"
-			url="${url}"
-			username="${username}"
-			password="${password}"
-			classpathref="classpath" />
-	</target>
-		
-	<target name="generateChangeLog">
-		<generateChangeLog outputFile="tdc/2013/portoalegre/db/changelog/sql/generateChangeLog.sql"
+		<rollbackFutureDatabase outputFile="${path}/rollbackFutureDatabase.sql"
+			changeLogFile="${changelog.master}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -63,6 +48,43 @@
 			classpathref="classpath" />
 	</target>
 
+	<target name="tagDatabase">
+		<tagDatabase tag="${tag}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
+	
+	<target name="generateChangeLog">
+		<generateChangeLog outputFile="${path}/generateChangeLog.xml"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
+	
+	<target name="diffDatabase">
+		<diffDatabase outputFile="${path}/diffDatabase.txt"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+		
+			referenceDriver="${driver}"
+			referenceUrl="#{referenceUrl}"
+			referenceUsername="${username}"
+			referencePassword="${password}"
+		
+			classpathref="classpath"/>
+	</target>
+	
+	<!--
+	diffDatabaseToChangeLog
+	dbDoc-->
+	
 	<target name="changeLogSync">
 		<changeLogSync changeLogFile="${changelog.master}"
 			driver="${driver}"
@@ -71,4 +93,7 @@
 			password="${password}"
 			classpathref="classpath" />
 	</target>
+	
+	<!--dropAllDatabaseObjects-->
+	
 </project>
