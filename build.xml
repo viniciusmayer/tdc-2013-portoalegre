@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="liquibase-demo" default="updateDatabase" basedir=".">
 
-	<property file="liquibase.properties" />
+	<property file="liquibase-ant.properties" />
 	<property name="path" value="db/changelog/"/>
 	
 	<property name="changelog.master" value="${path}/db.changelog-master.xml" />
@@ -70,7 +70,7 @@
 			classpathref="classpath" />
 	</target>
 	
-	<!--FIXME-->
+	<!-- FIXME reportar bug -->
 	<target name="diffDatabase">
 		<diffDatabase outputFile="${path}/diffDatabase.sql"
 			referenceUrl="#{reference.url}"
