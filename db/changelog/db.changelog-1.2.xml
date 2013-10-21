@@ -6,27 +6,10 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<property name="path" value="db/changelog"/>
-	
-	<changeSet id="0" author="viniciusmayer" context="prod, demo">
-		<tagDatabase tag="0"/>
-	</changeSet>
-
-	<!-- setup -->
-	<include file="${path}/db.changelog-1.0.xml" />
 	<changeSet id="1" author="viniciusmayer" context="prod, demo">
-		<tagDatabase tag="1"/>
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">select count(1) from mensagem;</sqlCheck>
+		</preConditions>
+		<dropTable tableName="mensagem"/>
 	</changeSet>
-	
-	<!-- carga inicial -->
-	<include file="${path}/db.changelog-1.1.xml" />
-	<changeSet id="2" author="viniciusmayer" context="prod, demo">
-		<tagDatabase tag="2"/>
-	</changeSet>
-	
-	<include file="${path}/db.changelog-1.2.xml" />
-	<changeSet id="3" author="viniciusmayer" context="prod, demo">
-		<tagDatabase tag="3"/>
-	</changeSet>
-	
 </databaseChangeLog>

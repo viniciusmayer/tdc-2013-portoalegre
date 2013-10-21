@@ -5,8 +5,6 @@
 	<property name="path" value="db/changelog/"/>
 	
 	<property name="changelog.master" value="${path}/db.changelog-master.xml" />
-	<property name="rollback.tag" value="1" />
-	<property name="tag" value="3" />
 
 	<property name="lib.dir" value="lib" />
 	<path id="classpath">
@@ -22,6 +20,7 @@
 	<target name="updateDatabase">
 		<updateDatabase
 			changeLogFile="${changelog.master}"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -32,6 +31,7 @@
 	<target name="rollbackDatabase">
 		<rollbackDatabase rollbackTag="${rollback.tag}"
 			changeLogFile="${changelog.master}"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -42,6 +42,7 @@
 	<target name="rollbackFutureDatabase">
 		<rollbackFutureDatabase outputFile="${path}/rollbackFutureDatabase.sql"
 			changeLogFile="${changelog.master}"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -51,6 +52,7 @@
 
 	<target name="tagDatabase">
 		<tagDatabase tag="${tag}"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -60,6 +62,7 @@
 	
 	<target name="generateChangeLog">
 		<generateChangeLog outputFile="${path}/generateChangeLog.xml"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -74,6 +77,7 @@
 			referenceUsername="${username}"
 			referencePassword="${password}"
 		
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -87,6 +91,7 @@
 			referenceUsername="${username}"
 			referencePassword="${password}"
 			
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -97,6 +102,7 @@
 	<target name="dbDoc">
 		<dbDoc outputDirectory="dbDoc"
 			changeLogFile="${changelog.master}"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -106,6 +112,7 @@
 	
 	<target name="changeLogSync">
 		<changeLogSync changeLogFile="${changelog.master}"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"
@@ -115,6 +122,7 @@
 	
 	<target name="dropAllDatabaseObjects">
 		<dropAllDatabaseObjects	promptOnNonLocalDatabase="true"
+			contexts="${contexts}"
 			driver="${driver}"
 			url="${url}"
 			username="${username}"

@@ -1,8 +1,3 @@
-'''
-Created on Oct 18, 2013
-
-@author: eleonorvinicius
-'''
 file = open("../db/changelog/sql/setup.sql", "w+")
 for i in range(10):
     file.write("insert into pessoa (nome, cpf) values ('{}', {});\n".format("nome {}".format(i), i))
