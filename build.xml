@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<project name="liquibase-demo" default="updateDatabase" basedir=".">
+<project name="tdc-2013-portoalegre" default="updateDatabase" basedir=".">
 
 	<property file="liquibase-ant.properties" />
-	<!--property file="liquibase-ant-demo.properties" /-->
 
 	<property name="lib.dir" value="lib" />
 	<path id="classpath">
@@ -58,7 +57,7 @@
 			password="${password}"
 			classpathref="classpath" />
 	</target>
-	
+
 	<target name="generateChangeLog">
 		<generateChangeLog outputFile="${path}/generateChangeLog.xml"
 			contexts="${contexts}"
@@ -68,7 +67,7 @@
 			password="${password}"
 			classpathref="classpath" />
 	</target>
-	
+
 	<!-- FIXME reportar bug -->
 	<!--target name="diffDatabase">
 		<diffDatabase outputFile="${path}/diffDatabase.sql"
@@ -83,7 +82,7 @@
 			password="${password}"
 			classpathref="classpath"/>
 	</target-->
-	
+
 	<target name="diffDatabaseToChangeLog">
 		<diffDatabaseToChangeLog outputFile="${path}/diffDatabaseToChangeLog.xml"
 			referenceUrl="${reference.url}"
@@ -108,7 +107,7 @@
 			password="${password}"
 			classpathref="classpath"/>
 	</target>
-	
+
 	<target name="changeLogSync">
 		<changeLogSync changeLogFile="${changelog.master}"
 			contexts="${contexts}"
@@ -118,7 +117,7 @@
 			password="${password}"
 			classpathref="classpath" />
 	</target>
-	
+
 	<target name="dropAllDatabaseObjects">
 		<dropAllDatabaseObjects	promptOnNonLocalDatabase="true"
 			contexts="${contexts}"
@@ -128,5 +127,5 @@
 			password="${password}"
 			classpathref="classpath" />
 	</target>
-	
+
 </project>

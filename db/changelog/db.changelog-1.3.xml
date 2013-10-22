@@ -6,7 +6,11 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<changeSet id="1" author="viniciusmayer" context="demo">
+	<changeSet id="1" author="viniciusmayer" context="dev">
+		<preConditions>
+			<tableExists tableName="mensagem" />
+		</preConditions>
+		
 		<sqlFile path="${path}/db.changelog-1.3.sql" />
 
 		<rollback>

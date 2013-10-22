@@ -6,6 +6,4 @@ liquibase --changeLogFile=db/changelog/db.changelog-master.xml --defaultsFile=li
 
 liquibase --changeLogFile=db/changelog/db.changelog-master.xml --defaultsFile=liquibase-commandLine.properties --contexts=prod updateSQL > update.sql
 
-liquibase --changeLogFile=db/changelog/db.changelog-master.xml --defaultsFile=liquibase-commandLine.properties --contexts=demo updateSQL > update-demo.sql
-
 liquibase --changeLogFile=generateChangeLog.xml --defaultsFile=liquibase-commandLine.properties generateChangeLog

@@ -6,10 +6,13 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<changeSet id="1" author="viniciusmayer" context="prod, demo">
-		<preConditions onFail="MARK_RAN">
+	<changeSet id="1" author="viniciusmayer" context="prod, dev">
+		<preConditions onFail="HALT">
 			<sqlCheck expectedResult="0">select count(1) from mensagem;</sqlCheck>
 		</preConditions>
+
 		<dropTable tableName="mensagem" />
+
+		<rollback></rollback>
 	</changeSet>
 </databaseChangeLog>
