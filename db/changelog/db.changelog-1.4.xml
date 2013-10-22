@@ -7,21 +7,9 @@
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet id="1" author="viniciusmayer" context="prod, demo">
-		<createTable tableName="pessoa">
-			<column name="id" type="serial" autoIncrement="true"
-				incrementBy="1" startWith="1">
-				<constraints primaryKey="true" />
-			</column>
-			<column name="nome" type="varchar(255)">
-				<constraints nullable="false" />
-			</column>
-			<column name="cpf" type="varchar(11)">
-				<constraints unique="true" nullable="false" />
-			</column>
-		</createTable>
-
-		<rollback>
-			<dropTable tableName="pessoa" cascadeConstraints="true" />
-		</rollback>
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">select count(1) from mensagem;</sqlCheck>
+		</preConditions>
+		<dropTable tableName="mensagem" />
 	</changeSet>
 </databaseChangeLog>

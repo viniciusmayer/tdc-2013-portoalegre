@@ -8,9 +8,9 @@
 
 	<changeSet id="1" author="viniciusmayer" context="demo">
 		<sqlFile path="${path}/db.changelog-1.1.sql" />
-		
+
 		<rollback>
-			<sqlFile path="${path}/db.changelog-1.1-rollback.sql"/>
+			<sql>truncate pessoa cascade;</sql>
 		</rollback>
 	</changeSet>
 </databaseChangeLog>

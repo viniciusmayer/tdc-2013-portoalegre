@@ -2,9 +2,7 @@
 <project name="liquibase-demo" default="updateDatabase" basedir=".">
 
 	<property file="liquibase-ant.properties" />
-	<property name="path" value="db/changelog/"/>
-	
-	<property name="changelog.master" value="${path}/db.changelog-master.xml" />
+	<!--property file="liquibase-ant-demo.properties" /-->
 
 	<property name="lib.dir" value="lib" />
 	<path id="classpath">
@@ -17,6 +15,7 @@
 		<classpath refid="classpath" />
 	</taskdef>
 
+	<!-- targets -->
 	<target name="updateDatabase">
 		<updateDatabase
 			changeLogFile="${changelog.master}"
@@ -71,7 +70,7 @@
 	</target>
 	
 	<!-- FIXME reportar bug -->
-	<target name="diffDatabase">
+	<!--target name="diffDatabase">
 		<diffDatabase outputFile="${path}/diffDatabase.sql"
 			referenceUrl="#{reference.url}"
 			referenceUsername="${username}"
@@ -83,7 +82,7 @@
 			username="${username}"
 			password="${password}"
 			classpathref="classpath"/>
-	</target>
+	</target-->
 	
 	<target name="diffDatabaseToChangeLog">
 		<diffDatabaseToChangeLog outputFile="${path}/diffDatabaseToChangeLog.xml"
