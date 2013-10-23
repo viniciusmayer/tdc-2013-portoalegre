@@ -7,10 +7,8 @@
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet id="1" author="viniciusmayer" context="prod, dev">
-		<preConditions onFail="MARK_RAN">
-			<not>
-				<tableExists tableName="pessoa" />
-			</not>
+		<preConditions onFail="HALT">
+			<tableExists tableName="pessoa" />
 		</preConditions>
 
 		<createTable tableName="mensagem">
@@ -30,7 +28,8 @@
 	</changeSet>
 
 	<changeSet id="2" author="viniciusmayer" context="prod, dev">
-		<preConditions onFail="MARK_RAN">
+		<!-- TODO melhorar esta precondition -->
+		<preConditions onFail="HALT">
 			<and>
 				<tableExists tableName="pessoa" />
 				<tableExists tableName="mensagem" />

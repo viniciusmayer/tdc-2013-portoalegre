@@ -7,7 +7,7 @@
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet id="1" author="viniciusmayer" context="dev">
-		<preConditions onError="HALT">
+		<preConditions onFail="HALT">
 			<tableExists tableName="pessoa" />
 		</preConditions>
 
