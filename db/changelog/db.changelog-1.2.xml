@@ -31,14 +31,10 @@
 
 	<changeSet id="2" author="viniciusmayer" context="prod, dev">
 		<preConditions onFail="HALT">
-			<or>
-				<not>
-					<tableExists tableName="pessoa" />
-				</not>
-				<not>
-					<tableExists tableName="mensagem" />
-				</not>
-			</or>
+			<and>
+				<tableExists tableName="pessoa" />
+				<tableExists tableName="mensagem" />
+			</and>
 			<!--
 			<not>
 				<foreignKeyConstraintExists
@@ -46,10 +42,9 @@
 			</not>
 			-->
 			<!--
-			TODO implementar uma custom customPrecondition
-			classe que implementa a interface liquibase.precondition.CustomPrecondition
-			<customPrecondition className=""></customPrecondition>
-			<sqlCheck expectedResult=""></sqlCheck>
+				TODO implementar uma custom customPrecondition
+				classe que implementa a interface liquibase.precondition.CustomPrecondition
+				<customPrecondition className=""></customPrecondition>
 			-->			
 		</preConditions>
 

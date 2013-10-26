@@ -24,5 +24,4 @@ liquibase --changeLogFile=db/changelog/db.changelog-master.xml --defaultsFile=li
 
 liquibase --changeLogFile=db/changelog/db.changelog-master.xml --defaultsFile=liquibase-commandLine.properties --contexts=prod updateSQL > update.sql
 
-# verificar a conexão
-liquibase --changeLogFile=generateChangeLog.xml --defaultsFile=liquibase-commandLine-prod.properties generateChangeLog
+liquibase --changeLogFile=generateChangeLog.xml --defaultsFile=liquibase-commandLine.properties generateChangeLog

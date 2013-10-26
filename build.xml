@@ -25,6 +25,18 @@
 			password="${password}"
 			classpathref="classpath" />
 	</target>
+	
+	<target name="updateDatabaseToFile">
+		<updateDatabase
+			outputFile="update.sql"
+			changeLogFile="${changelog.master}"
+			contexts="${contexts}"
+			driver="${driver}"
+			url="${url}"
+			username="${username}"
+			password="${password}"
+			classpathref="classpath" />
+	</target>
 
 	<target name="rollbackDatabase">
 		<rollbackDatabase rollbackTag="${rollback.tag}"
@@ -38,7 +50,7 @@
 	</target>
 
 	<target name="rollbackFutureDatabase">
-		<rollbackFutureDatabase outputFile="${path}/rollbackFutureDatabase.sql"
+		<rollbackFutureDatabase outputFile="rollbackFutureDatabase.sql"
 			changeLogFile="${changelog.master}"
 			contexts="${contexts}"
 			driver="${driver}"
@@ -84,7 +96,7 @@
 	</target-->
 
 	<target name="diffDatabaseToChangeLog">
-		<diffDatabaseToChangeLog outputFile="${path}/diffDatabaseToChangeLog.xml"
+		<diffDatabaseToChangeLog outputFile="diffDatabaseToChangeLog.xml"
 			referenceUrl="${reference.url}"
 			referenceUsername="${username}"
 			referencePassword="${password}"

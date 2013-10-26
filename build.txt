@@ -1,0 +1,14 @@
+include db.changelog-1.1.xml
+updateDatabase
+
+diffDatabaseToChangeLog
+
+include db.changelog-1.2.xml
+include db.changelog-1.3.xml
+updateDatabaseToFile
+rollbackFutureDatabase
+dbDoc
+
+updateDatabase
+
+dbDoc
