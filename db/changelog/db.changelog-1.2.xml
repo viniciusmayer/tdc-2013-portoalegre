@@ -9,7 +9,7 @@
 	<changeSet id="1" author="viniciusmayer" context="prod, dev">
 		<preConditions onFail="MARK_RAN">
 			<not>
-				<tableExists tableName="pessoa" />
+				<tableExists tableName="mensagem" />
 			</not>
 		</preConditions>
 
@@ -30,15 +30,27 @@
 	</changeSet>
 
 	<changeSet id="2" author="viniciusmayer" context="prod, dev">
-		<preConditions onFail="MARK_RAN">
-			<and>
-				<tableExists tableName="pessoa" />
-				<tableExists tableName="mensagem" />
+		<preConditions onFail="HALT">
+			<or>
 				<not>
-					<foreignKeyConstraintExists
-						foreignKeyName="fk_mensagem_pessoa" foreignKeyTableName="mensagem" />
+					<tableExists tableName="pessoa" />
 				</not>
-			</and>
+				<not>
+					<tableExists tableName="mensagem" />
+				</not>
+			</or>
+			<!--
+			<not>
+				<foreignKeyConstraintExists
+					foreignKeyName="fk_mensagem_pessoa" foreignKeyTableName="mensagem" />
+			</not>
+			-->
+			<!--
+			TODO implementar uma custom customPrecondition
+			classe que implementa a interface liquibase.precondition.CustomPrecondition
+			<customPrecondition className=""></customPrecondition>
+			<sqlCheck expectedResult=""></sqlCheck>
+			-->			
 		</preConditions>
 
 		<addForeignKeyConstraint baseColumnNames="pessoa_id"
